@@ -112,8 +112,9 @@ const demoTheme = extendTheme({
 });
 
 
+
 // Main dashboard layout component
-export default function Poem() {
+export default function Support() {
   const [session, setSession] = React.useState<Session | null>(null);
 
   const authentication = React.useMemo(() => {

@@ -3,13 +3,11 @@ import { extendTheme, styled } from "@mui/material/styles";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import BarChartIcon from "@mui/icons-material/BarChart";
-import DescriptionIcon from "@mui/icons-material/Description";
 import LayersIcon from "@mui/icons-material/Layers";
 import { AppProvider, Navigation, Session } from "@toolpad/core/AppProvider";
 import { DashboardLayout } from "@toolpad/core/DashboardLayout";
 import { PageContainer } from "@toolpad/core/PageContainer";
 import Grid from "@mui/material/Grid";
-import Skeleton from "@mui/material/Skeleton"; // Skeleton importi
 
 // TypeScript interfeysi
 interface CustomNavigationItem {
@@ -27,6 +25,13 @@ const NAVIGATION: CustomNavigationItem[] = [
     title: "Main items",
     segment: "main-items",
     icon: <DashboardIcon />,
+  },
+  
+  {
+    segment: "profil",
+    title: "Profil",
+    icon: <DashboardIcon />,
+    link: "/profil",
   },
   {
     segment: "quiz",
@@ -57,6 +62,12 @@ const NAVIGATION: CustomNavigationItem[] = [
     title: "Zakovat savollari",
     icon: <ShoppingCartIcon />,
     link: "/intelligence",
+  },
+  {
+    segment: "support",
+    title: "Qo'llab-quvvatlash xizmati",
+    icon: <ShoppingCartIcon />,
+    link: "/support",
   },
   {
     kind: "divider",
@@ -98,29 +109,10 @@ const demoTheme = extendTheme({
     },
   },
 });
-// Skeleton component styling
-const SkeletonWrapper = styled("div")<{ height: number }>(({ theme, height }) => ({
-  backgroundColor: theme.palette.action.hover,
-  borderRadius: theme.shape.borderRadius,
-  height,
-  content: '" "',
-}));
 
-// Component for page content (Demo for Dashboard, Orders, etc.)
-const ContentPage = ({ title }: { title: string }) => (
-  <Grid container spacing={1}>
-    <Grid item xs={12}>
-      <SkeletonWrapper height={100} />
-    </Grid>
-    <Grid item xs={12}>
-      <h1>{title} Page</h1>
-      <p>Content will be displayed here for {title}</p>
-    </Grid>
-  </Grid>
-);
 
 // Main dashboard layout component
-export default function Intelligence(props: any) {
+export default function Intelligence() {
   const [session, setSession] = React.useState<Session | null>(null);
 
   const authentication = React.useMemo(() => {
@@ -145,15 +137,12 @@ export default function Intelligence(props: any) {
       <DashboardLayout>
         <PageContainer>
           {/* Content rendered for the dashboard */}
-          <Grid container spacing={1}>
+          <Grid container spacing={1}>         
             <Grid item xs={12}>
-              {/* Render Skeleton or content */}
-              <Skeleton variant="text" width="100%" height={40} />
+              <h1>Zakovat</h1>
+              <p>Zakovat sahifasiga xush kelibsiz!</p>
             </Grid>
-            <Grid item xs={12}>
-              <h1>Dashboard</h1>
-              <p>Welcome to the Dashboard!</p>
-            </Grid>
+           
           </Grid>
         </PageContainer>
       </DashboardLayout>

@@ -29,6 +29,13 @@ const NAVIGATION: CustomNavigationItem[] = [
     segment: "main-items",
     icon: <DashboardIcon />,
   },
+  
+  {
+    segment: "profil",
+    title: "Profil",
+    icon: <DashboardIcon />,
+    link: "/profil",
+  },
   {
     segment: "quiz",
     title: "Viktorina",
@@ -58,6 +65,12 @@ const NAVIGATION: CustomNavigationItem[] = [
     title: "Zakovat savollari",
     icon: <ShoppingCartIcon />,
     link: "/intelligence",
+  },
+  {
+    segment: "support",
+    title: "Qo'llab-quvvatlash xizmati",
+    icon: <ShoppingCartIcon />,
+    link: "/support",
   },
   {
     kind: "divider",
@@ -100,13 +113,7 @@ const demoTheme = extendTheme({
   },
 });
 
-// Skeleton component styling for loading
-const SkeletonWrapper = styled("div")<{ height: number }>(({ theme, height }) => ({
-  backgroundColor: theme.palette.action.hover,
-  borderRadius: theme.shape.borderRadius,
-  height,
-  content: '" "',
-}));
+
 
 // Fanlar (Subjects) component to display available subjects
 const SubjectSelection = ({ onSubjectSelect }: { onSubjectSelect: (subject: string) => void }) => {

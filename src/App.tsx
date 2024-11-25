@@ -8,6 +8,9 @@ import Intelligence from "./components/intelligence"
 import Interesting from "./components/interesting"
 import Poem from "./components/poem"
 import QuizApp from "./components/Viktorina"
+import Profil from "./components/profil"
+import Support from "./components/toSupport"
+
 
 export default function App() {
   const routes = createBrowserRouter([
@@ -46,6 +49,14 @@ export default function App() {
     {
       path:'/reports',
       element:<Reports />
+    },
+    {
+      path:'/profil',
+      element:<Profil />
+    },
+    {
+      path:'/support',
+      element:<Support />
     },
    
     

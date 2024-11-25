@@ -27,6 +27,13 @@ const NAVIGATION: CustomNavigationItem[] = [
     segment: "main-items",
     icon: <DashboardIcon />,
   },
+  
+  {
+    segment: "profil",
+    title: "Profil",
+    icon: <DashboardIcon />,
+    link: "/profil",
+  },
   {
     segment: "quiz",
     title: "Viktorina",
@@ -56,6 +63,12 @@ const NAVIGATION: CustomNavigationItem[] = [
     title: "Zakovat savollari",
     icon: <ShoppingCartIcon />,
     link: "/intelligence",
+  },
+  {
+    segment: "support",
+    title: "Qo'llab-quvvatlash xizmati",
+    icon: <ShoppingCartIcon />,
+    link: "/support",
   },
   {
     kind: "divider",
@@ -97,29 +110,10 @@ const demoTheme = extendTheme({
     },
   },
 });
-// Skeleton component styling
-const SkeletonWrapper = styled("div")<{ height: number }>(({ theme, height }) => ({
-  backgroundColor: theme.palette.action.hover,
-  borderRadius: theme.shape.borderRadius,
-  height,
-  content: '" "',
-}));
 
-// Component for page content (Demo for Dashboard, Orders, etc.)
-const ContentPage = ({ title }: { title: string }) => (
-  <Grid container spacing={1}>
-    <Grid item xs={12}>
-      <SkeletonWrapper height={100} />
-    </Grid>
-    <Grid item xs={12}>
-      <h1>{title} Page</h1>
-      <p>Content will be displayed here for {title}</p>
-    </Grid>
-  </Grid>
-);
 
 // Main dashboard layout component
-export default function Interesting(props: any) {
+export default function Interesting() {
   const [session, setSession] = React.useState<Session | null>(null);
 
   const authentication = React.useMemo(() => {
