@@ -3,6 +3,7 @@ import { extendTheme, styled } from "@mui/material/styles";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import BarChartIcon from "@mui/icons-material/BarChart";
+import DescriptionIcon from "@mui/icons-material/Description";
 import LayersIcon from "@mui/icons-material/Layers";
 import { AppProvider, Navigation, Session } from "@toolpad/core/AppProvider";
 import { DashboardLayout } from "@toolpad/core/DashboardLayout";
@@ -10,12 +11,13 @@ import { PageContainer } from "@toolpad/core/PageContainer";
 import Grid from "@mui/material/Grid";
 import Skeleton from "@mui/material/Skeleton"; // Skeleton importi
 
+// TypeScript interfeysi
 interface CustomNavigationItem {
   kind?: string;
   title: string;
   segment: string;
   icon: React.ReactNode;
-  link?: string; 
+  link?: string; // Custom link property
   children?: CustomNavigationItem[];
 }
 
@@ -118,7 +120,7 @@ const ContentPage = ({ title }: { title: string }) => (
 );
 
 // Main dashboard layout component
-export default function DashboardLayoutBasic(props: any) {
+export default function Communication(props: any) {
   const [session, setSession] = React.useState<Session | null>(null);
 
   const authentication = React.useMemo(() => {

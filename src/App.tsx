@@ -1,10 +1,14 @@
 import {createBrowserRouter, RouterProvider} from "react-router-dom"
 import DashboardLayoutBasic from "./page/admin"
 import SlotPropsSignIn from "./page/auth"
-import Dashboard from "./components/dashboarding"
-import Orders from "./components/orders"
 import Integrations from "./components/integrations"
 import Reports from "./components/reports"
+import Communication from "./components/communication"
+import Intelligence from "./components/intelligence"
+import Interesting from "./components/interesting"
+import Poem from "./components/poem"
+import QuizApp from "./components/Viktorina"
+
 export default function App() {
   const routes = createBrowserRouter([
     {
@@ -16,12 +20,24 @@ export default function App() {
       element:<SlotPropsSignIn />
     },
     {
-      path:'/dashboard',
-      element:<Dashboard />
+      path:'/quiz',
+      element:<QuizApp />
     },
     {
-      path:'/orders',
-      element:<Orders />
+      path:'/communication',
+      element:<Communication />
+    },
+    {
+      path:'/poem',
+      element:<Poem />
+    },
+    {
+      path:'/interesting',
+      element:<Interesting />
+    },
+    {
+      path:'/intelligence',
+      element:<Intelligence />
     },
     {
       path:'/integrations',

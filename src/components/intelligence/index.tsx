@@ -29,16 +29,34 @@ const NAVIGATION: CustomNavigationItem[] = [
     icon: <DashboardIcon />,
   },
   {
-    segment: "dashboard",
-    title: "Dashboard",
+    segment: "quiz",
+    title: "Viktorina",
     icon: <DashboardIcon />,
-    link: "/dashboard",
+    link: "/quiz",
   },
   {
-    segment: "orders",
-    title: "Orders",
+    segment: "communication",
+    title: "Maqolalar",
     icon: <ShoppingCartIcon />,
-    link: "/orders",
+    link: "/communication",
+  },
+  {
+    segment: "poem",
+    title: "She'rlar",
+    icon: <ShoppingCartIcon />,
+    link: "/poem",
+  },
+  {
+    segment: "interesting",
+    title: "Bu qizIQ",
+    icon: <ShoppingCartIcon />,
+    link: "/interesting",
+  },
+  {
+    segment: "intelligence",
+    title: "Zakovat savollari",
+    icon: <ShoppingCartIcon />,
+    link: "/intelligence",
   },
   {
     kind: "divider",
@@ -102,7 +120,7 @@ const ContentPage = ({ title }: { title: string }) => (
 );
 
 // Main dashboard layout component
-export default function Dashboard(props: any) {
+export default function Intelligence(props: any) {
   const [session, setSession] = React.useState<Session | null>(null);
 
   const authentication = React.useMemo(() => {

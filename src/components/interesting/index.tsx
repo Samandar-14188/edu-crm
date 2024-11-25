@@ -10,12 +10,13 @@ import { PageContainer } from "@toolpad/core/PageContainer";
 import Grid from "@mui/material/Grid";
 import Skeleton from "@mui/material/Skeleton"; // Skeleton importi
 
+// TypeScript interfeysi
 interface CustomNavigationItem {
   kind?: string;
   title: string;
   segment: string;
   icon: React.ReactNode;
-  link?: string; 
+  link?: string; // Custom link property
   children?: CustomNavigationItem[];
 }
 
@@ -118,7 +119,7 @@ const ContentPage = ({ title }: { title: string }) => (
 );
 
 // Main dashboard layout component
-export default function DashboardLayoutBasic(props: any) {
+export default function Interesting(props: any) {
   const [session, setSession] = React.useState<Session | null>(null);
 
   const authentication = React.useMemo(() => {
