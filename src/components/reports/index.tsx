@@ -102,7 +102,7 @@ const ContentPage = ({ title }: { title: string }) => (
 );
 
 // Main dashboard layout component
-export default function DashboardLayoutBasic(props: any) {
+export default function Reports(props: any) {
   const [session, setSession] = React.useState<Session | null>(null);
 
   const authentication = React.useMemo(() => {
