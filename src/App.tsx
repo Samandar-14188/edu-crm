@@ -43,7 +43,7 @@ export default function App() {
       element:<Intelligence />
     },
     {
-      path:'/integrations',
+      path:'/article/samandar-ai',
       element:<Integrations />
     },
     {

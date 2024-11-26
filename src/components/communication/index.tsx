@@ -8,7 +8,8 @@ import { AppProvider, Navigation, Session } from "@toolpad/core/AppProvider";
 import { DashboardLayout } from "@toolpad/core/DashboardLayout";
 import { PageContainer } from "@toolpad/core/PageContainer";
 import Grid from "@mui/material/Grid";
-import Skeleton from "@mui/material/Skeleton"; // Skeleton importi
+import { Link } from "react-router-dom";
+import { Card, CardContent, CardMedia, Typography } from "@mui/material";
 
 // TypeScript interfeysi
 interface CustomNavigationItem {
@@ -141,16 +142,55 @@ export default function Communication() {
     >
       <DashboardLayout>
         <PageContainer>
-          {/* Content rendered for the dashboard */}
+        
           <Grid container spacing={1}>
-            <Grid item xs={12}>
-              {/* Render Skeleton or content */}
-              <Skeleton variant="text" width="100%" height={40} />
+        
+            <Grid item xs={12} >
+        <Typography variant="h4" gutterBottom>
+          Bu yerda sizni ham maqolangiz bo'lishi mumkin!
+        </Typography>
+        <Typography
+      variant="h6" // Matn kattaligini belgilash
+      gutterBottom
+      sx={{
+        color: "#1976d2", // Matn rangini o'rnatish (masalan, Material-UI asosiy ko‘k rangi)
+        "& a": {
+          textDecoration: "none", // Ostidan chiziqni olib tashlash
+          color: "#1976d2", // Havola rangi
+          fontWeight: "bold", // Matn qalinligi
+        },
+        "& a:hover": {
+          color: "#1565c0", // Hoverdagi rang
+          textDecoration: "underline", // Hoverda ostki chiziq
+          transition: "color 0.3s", // Silliq o‘tish effekti
+        },
+      }}
+    >
+      <Link to="/support">Qo'llab-quvvatlash sahifasiga o'tish</Link>
+    </Typography>
             </Grid>
-            <Grid item xs={12}>
-              <h1>Dashboard</h1>
-              <p>Welcome to the Dashboard!</p>
+            <Grid item xs={12} md={6}>
+              <Link to="/article/samandar-ai" style={{ textDecoration: "none" }}>
+                <Card sx={{ maxWidth: "100%", borderRadius: 3, boxShadow: 3 }}>
+                  <CardMedia
+                    component="img"
+                    height="200"
+                    image="https://ict.xabar.uz/static/crop/1/6/920__95_1614834901.jpg"
+                    alt="AI maqolasi"
+                  />
+                  <CardContent>
+                    <Typography variant="h6" gutterBottom>
+                      Sun’iy intellekt hayotimizni qanday o‘zgartirmoqda?
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      Samandar Nabiyevning maqolasi: Tibbiyot, ta'lim, transport, va boshqa sohalarda AI inqilobi.
+                    </Typography>
+                  </CardContent>
+                </Card>
+              </Link>
             </Grid>
+             
+          
           </Grid>
         </PageContainer>
       </DashboardLayout>
