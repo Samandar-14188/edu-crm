@@ -1,162 +1,107 @@
 import * as React from "react";
-import { extendTheme, styled } from "@mui/material/styles";
-import DashboardIcon from "@mui/icons-material/Dashboard";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import BarChartIcon from "@mui/icons-material/BarChart";
-import DescriptionIcon from "@mui/icons-material/Description";
-import LayersIcon from "@mui/icons-material/Layers";
-import { AppProvider, Navigation, Session } from "@toolpad/core/AppProvider";
-import { DashboardLayout } from "@toolpad/core/DashboardLayout";
-import { PageContainer } from "@toolpad/core/PageContainer";
-import Grid from "@mui/material/Grid";
-import Skeleton from "@mui/material/Skeleton"; // Skeleton importi
+import { Box, Button, Typography, Grid } from "@mui/material";
+import useMediaQuery from '@mui/material/useMediaQuery';
 
-// TypeScript interfeysi
-interface CustomNavigationItem {
-  kind?: string;
-  title: string;
-  segment: string;
-  icon: React.ReactNode;
-  link?: string; // Custom link property
-  children?: CustomNavigationItem[];
-}
 
-const NAVIGATION: CustomNavigationItem[] = [
+const quizQuestions = [
   {
-    kind: "header",
-    title: "Main items",
-    segment: "main-items",
-    icon: <DashboardIcon />,
+    question: "What is the capital of France?",
+    options: ["Berlin", "Madrid", "Paris", "Rome"],
+    correctAnswer: "Paris",
   },
   {
-    segment: "quiz",
-    title: "Viktorina",
-    icon: <DashboardIcon />,
-    link: "/quiz",
-  },
-  {
-    segment: "communication",
-    title: "Maqolalar",
-    icon: <ShoppingCartIcon />,
-    link: "/communication",
-  },
-  {
-    segment: "poem",
-    title: "She'rlar",
-    icon: <ShoppingCartIcon />,
-    link: "/poem",
-  },
-  {
-    segment: "interesting",
-    title: "Bu qizIQ",
-    icon: <ShoppingCartIcon />,
-    link: "/interesting",
-  },
-  {
-    segment: "intelligence",
-    title: "Zakovat savollari",
-    icon: <ShoppingCartIcon />,
-    link: "/intelligence",
-  },
-  {
-    kind: "divider",
-    title: "",
-    segment: "divider",
-    icon: <></>,
-  },
-  {
-    kind: "header",
-    title: "Analytics",
-    segment: "analytics",
-    icon: <BarChartIcon />,
-  },
-  {
-    segment: "reports",
-    title: "Reports",
-    icon: <BarChartIcon />,
-    link: "/reports",
-  },
-  {
-    segment: "integrations",
-    title: "Integrations",
-    icon: <LayersIcon />,
-    link: "/integrations",
+    question: "What is the largest planet in our solar system?",
+    options: ["Earth", "Mars", "Jupiter", "Saturn"],
+    correctAnswer: "Jupiter",
   },
 ];
 
-// Theme for the app
-const demoTheme = extendTheme({
-  colorSchemes: { light: true, dark: true },
-  colorSchemeSelector: "class",
-  breakpoints: {
-    values: {
-      xs: 0,
-      sm: 600,
-      md: 600,
-      lg: 1200,
-      xl: 1536,
-    },
-  },
-});
-// Skeleton component styling
-const SkeletonWrapper = styled("div")<{ height: number }>(({ theme, height }) => ({
-  backgroundColor: theme.palette.action.hover,
-  borderRadius: theme.shape.borderRadius,
-  height,
-  content: '" "',
-}));
+const Quiz = () => {
+  const [currentQuestionIndex, setCurrentQuestionIndex] = React.useState(0);
+  const [score, setScore] = React.useState(0);
+  const [showResult, setShowResult] = React.useState(false);
+  const [selectedAnswer, setSelectedAnswer] = React.useState<string | null>(null);
 
-// Component for page content (Demo for Dashboard, Orders, etc.)
-const ContentPage = ({ title }: { title: string }) => (
-  <Grid container spacing={1}>
-    <Grid item xs={12}>
-      <SkeletonWrapper height={100} />
-    </Grid>
-    <Grid item xs={12}>
-      <h1>{title} Page</h1>
-      <p>Content will be displayed here for {title}</p>
-    </Grid>
-  </Grid>
-);
+  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)'); 
 
-// Main dashboard layout component
-export default function Intelligence(props: any) {
-  const [session, setSession] = React.useState<Session | null>(null);
+  const currentQuestion = quizQuestions[currentQuestionIndex];
 
-  const authentication = React.useMemo(() => {
-    return {
-      signIn: () => {
-        setSession({
-          user: {
-            name: "Bharat Kashyap",
-            email: "bharatkashyap@outlook.com",
-            image: "https://avatars.githubusercontent.com/u/19550456",
-          },
-        });
-      },
-      signOut: () => {
-        setSession(null);
-      },
-    };
-  }, []);
+  const handleAnswer = (answer: string) => {
+    setSelectedAnswer(answer);
+    if (answer === currentQuestion.correctAnswer) {
+      setScore(score + 1);
+    }
+  };
+
+  const handleNextQuestion = () => {
+    const nextQuestionIndex = currentQuestionIndex + 1;
+    if (nextQuestionIndex < quizQuestions.length) {
+      setCurrentQuestionIndex(nextQuestionIndex);
+      setSelectedAnswer(null); 
+    } else {
+      setShowResult(true); 
+    }
+  };
+
+  const handleRestart = () => {
+    setScore(0);
+    setCurrentQuestionIndex(0);
+    setSelectedAnswer(null);
+    setShowResult(false); 
+  };
 
   return (
-    <AppProvider navigation={NAVIGATION} theme={demoTheme} session={session} authentication={authentication}>
-      <DashboardLayout>
-        <PageContainer>
-          {/* Content rendered for the dashboard */}
-          <Grid container spacing={1}>
-            <Grid item xs={12}>
-              {/* Render Skeleton or content */}
-              <Skeleton variant="text" width="100%" height={40} />
-            </Grid>
-            <Grid item xs={12}>
-              <h1>Dashboard</h1>
-              <p>Welcome to the Dashboard!</p>
-            </Grid>
+    <Box p={2} maxWidth={600} margin="auto">
+      {!showResult ? (
+        <>
+          <Typography variant="h5" gutterBottom>
+            {currentQuestion.question}
+          </Typography>
+          <Grid container spacing={2}>
+            {currentQuestion.options.map((option) => (
+              <Grid item xs={12} sm={6} key={option}>
+                <Button
+                  variant="contained"
+                  color={selectedAnswer === option ? "primary" : "default"}
+                  onClick={() => handleAnswer(option)}
+                  fullWidth
+                  disabled={!!selectedAnswer}
+                  sx={{
+                    backgroundColor: prefersDarkMode ? "#444" : "#fff", 
+                    color: prefersDarkMode ? "#CC0000" : "#000", 
+                  }}
+                >
+                  {option}
+                </Button>
+              </Grid>
+            ))}
           </Grid>
-        </PageContainer>
-      </DashboardLayout>
-    </AppProvider>
+          {selectedAnswer && (
+            <Box mt={2}>
+              <Typography>
+                {selectedAnswer === currentQuestion.correctAnswer
+                  ? "To'g'ri javob!"
+                  : "Noto'g'ri javob!"}
+              </Typography>
+              <Button variant="contained" color="secondary" onClick={handleNextQuestion}>
+                Keyingi savol
+              </Button>
+            </Box>
+          )}
+        </>
+      ) : (
+        <Box mt={4} textAlign="center">
+          <Typography variant="h4">Natija</Typography>
+          <Typography variant="h6">
+            Siz {quizQuestions.length} ta savoldan {score} ta to'g'ri javob berdingiz!
+          </Typography>
+          <Button variant="contained" color="primary" onClick={handleRestart}>
+            Viktorinani qayta boshlash
+          </Button>
+        </Box>
+      )}
+    </Box>
   );
-}
+};
+
+export default Quiz;
