@@ -11,25 +11,20 @@ import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
 import Skeleton from "@mui/material/Skeleton";
 import { Typography } from "@mui/material";
+import MenuBookIcon from '@mui/icons-material/MenuBook';
+import SupportAgentIcon from "@mui/icons-material/SupportAgent";
+import ComputerIcon from "@mui/icons-material/Computer";
+import CampaignIcon from "@mui/icons-material/Campaign";
+import DesignServicesIcon from "@mui/icons-material/DesignServices";
+import HtmlIcon from "@mui/icons-material/Html";
+import CssIcon from "@mui/icons-material/Css";
+import CodeIcon from "@mui/icons-material/Code";
+import LanguageIcon from "@mui/icons-material/Language";
+import BookIcon from "@mui/icons-material/Book";
+// TypeScript interfeysi
 
-// TypeScript interface for navigation items
-interface CustomNavigationItem {
-  kind?: string;
-  title: string;
-  segment: string;
-  icon: React.ReactNode;
-  link?: string;
-  children?: CustomNavigationItem[];
-}
 
 const NAVIGATION: CustomNavigationItem[] = [
-  {
-    kind: "header",
-    title: "Main items",
-    segment: "main-items",
-    icon: <DashboardIcon />,
-  },
-  
   {
     segment: "profil",
     title: "Profil",
@@ -45,31 +40,31 @@ const NAVIGATION: CustomNavigationItem[] = [
   {
     segment: "communication",
     title: "Maqolalar",
-    icon: <ShoppingCartIcon />,
+    icon: <BookIcon />,
     link: "/communication",
   },
   {
     segment: "poem",
     title: "She'rlar",
-    icon: <ShoppingCartIcon />,
+    icon: <BookIcon />,
     link: "/poem",
   },
   {
     segment: "interesting",
     title: "Bu qizIQ",
-    icon: <ShoppingCartIcon />,
+    icon: <CampaignIcon />,
     link: "/interesting",
   },
   {
     segment: "intelligence",
     title: "Zakovat savollari",
-    icon: <ShoppingCartIcon />,
+    icon: <MenuBookIcon />,
     link: "/intelligence",
   },
   {
     segment: "support",
     title: "Qo'llab-quvvatlash xizmati",
-    icon: <ShoppingCartIcon />,
+    icon: <SupportAgentIcon />,
     link: "/support",
   },
   {
@@ -80,23 +75,128 @@ const NAVIGATION: CustomNavigationItem[] = [
   },
   {
     kind: "header",
-    title: "Analytics",
+    title: "IT va Mediaga aloqador",
     segment: "analytics",
     icon: <BarChartIcon />,
   },
   {
-    segment: "reports",
-    title: "Reports",
-    icon: <BarChartIcon />,
-    link: "/reports",
+    segment: "compute-literacy",
+    title: "Komyuter savodxonligi",
+    icon: <ComputerIcon />,
+    link: "/computer-literacy",
   },
   {
-    segment: "integrations",
-    title: "Integrations",
+    segment: "marketing",
+    title: "SMM",
+    icon: <CampaignIcon />,
+    link: "/marketing",
+  },
+  {
+    segment: "graphic-design",
+    title: "Grafik dizayn",
+    icon: <DesignServicesIcon />,
+    link: "/graphic-design",
+  },
+  {
+    segment: "html",
+    title: "HTML",
+    icon: <HtmlIcon />,
+    link: "/html",
+  },
+  {
+    segment: "css",
+    title: "CSS",
+    icon: <CssIcon />,
+    link: "/css",
+  },
+  {
+    segment: "sass",
+    title: "SASS",
     icon: <LayersIcon />,
-    link: "/integrations",
+    link: "/sass",
+  },
+  {
+    segment: "typescript",
+    title: "TYPESCRIPT",
+    icon: <CodeIcon />,
+    link: "/typescript",
+  },
+  {
+    segment: "javascript",
+    title: "JAVASCRIPT",
+    icon: <CodeIcon />,
+    link: "/javascript",
+  },
+  {
+    segment: "python",
+    title: "PYTHON",
+    icon: <CodeIcon />,
+    link: "/python",
+  },
+  {
+    segment: "java",
+    title: "JAVA",
+    icon: <CodeIcon />,
+    link: "/java",
+  },
+  {
+    segment: "c#",
+    title: "C#",
+    icon: <CodeIcon />,
+    link: "/c#",
+  },
+  {
+    segment: "c++",
+    title: "C++",
+    icon: <CodeIcon />,
+    link: "/c++",
+  },
+  {
+    kind: "divider",
+    title: "",
+    segment: "divider",
+    icon: <></>,
+  },
+  {
+    kind: "header",
+    title: "Xorijiy tillar",
+    segment: "language",
+    icon: <LanguageIcon />,
+  },
+  {
+    segment: "english",
+    title: "Ingliz tili",
+    icon: <LanguageIcon />,
+    link: "/english",
+  },
+  {
+    segment: "russian",
+    title: "Rus tili",
+    icon: <LanguageIcon />,
+    link: "/russian",
+  },
+  {
+    segment: "korean",
+    title: "Koreys tili",
+    icon: <LanguageIcon />,
+    link: "/korean",
+  },
+  {
+    segment: "german",
+    title: "Nemis tili",
+    icon: <LanguageIcon />,
+    link: "/german",
   },
 ];
+// TypeScript interface for navigation items
+interface CustomNavigationItem {
+  kind?: string;
+  title: string;
+  segment: string;
+  icon: React.ReactNode;
+  link?: string;
+  children?: CustomNavigationItem[];
+}
 
 // Theme configuration for the app
 const demoTheme = extendTheme({
@@ -117,101 +217,135 @@ const demoTheme = extendTheme({
 
 // Fanlar (Subjects) component to display available subjects
 const SubjectSelection = ({ onSubjectSelect }: { onSubjectSelect: (subject: string) => void }) => {
-  const subjects = ["Informatika", "Matematika", "Tarix", "Geografiya"];
-
-  return (
-    <Grid container spacing={2}>
-      <Grid item xs={12}>
-        <Typography variant="h4">Fanlar</Typography>
-      </Grid>
-      {subjects.map((subject, index) => (
-        <Grid item xs={12} key={index}>
-          <Button variant="contained" onClick={() => onSubjectSelect(subject)} fullWidth>
-            {subject}
-          </Button>
+    const subjects = [
+      "Informatika", "Matematika", "Tarix", "Geografiya", 
+      "Fizika", "Kimyo", "Biologiya", "Adabiyot", 
+      "Tarbiya", "Psixologiya", "San'at", "Musiqa",
+      "Sport", "Iqtisodiyot", "Falsafa", "Astronomiya",
+      "Dasturlash", "Tibbiyot"
+    ];
+  
+    return (
+      <Grid container spacing={2}>
+        <Grid item xs={12}>
+          <Typography variant="h4">Fanlar</Typography>
         </Grid>
-      ))}
-    </Grid>
-  );
-};
-
-// Zakovat (Quiz) Component - This will render the quiz based on selected subject
-const ZakovatQuiz = ({ subject }: { subject: string }) => {
-  const [selectedAnswer, setSelectedAnswer] = React.useState<string | null>(null);
-  const [isAnswered, setIsAnswered] = React.useState(false);
-
-  // Sample questions for different subjects
-  const quizData = {
-    Informatika: {
-      question: "Informatikaning asosiy tushunchasi nima?",
-      options: ["Algoritm", "Matematika", "Fizika", "Kimyo"],
-      correctAnswer: "Algoritm",
-    },
-    Matematika: {
-      question: "Pifagor teoremasi nima?",
-      options: ["A^2 + B^2 = C^2", "A + B = C", "A - B = C", "A * B = C"],
-      correctAnswer: "A^2 + B^2 = C^2",
-    },
-    Tarix: {
-      question: "Qaysi yil mustaqillik e'lon qilindi?",
-      options: ["1991", "2000", "1989", "1995"],
-      correctAnswer: "1991",
-    },
-    Geografiya: {
-      question: "Dunyoning eng katta okeani qaysi?",
-      options: ["Tinch okean", "Atlantika okeani", "Hind okeani", "Shimoliy muz okeani"],
-      correctAnswer: "Tinch okean",
-    },
-  };
-
-  const { question, options, correctAnswer } = quizData[subject] || {
-    question: "No quiz available",
-    options: [],
-    correctAnswer: "",
-  };
-
-  const handleAnswerSelection = (answer: string) => {
-    setSelectedAnswer(answer);
-  };
-
-  const handleSubmit = () => {
-    setIsAnswered(true);
-  };
-
-  return (
-    <Grid container spacing={2}>
-      <Grid item xs={12}>
-        <Typography variant="h4">{question}</Typography>
-      </Grid>
-      <Grid item xs={12}>
-        {options.map((option, index) => (
-          <Button
-            key={index}
-            variant="contained"
-            color={selectedAnswer === option ? "primary" : "default"}
-            onClick={() => handleAnswerSelection(option)}
-            fullWidth
-            style={{ marginBottom: 8 }}
-          >
-            {option}
-          </Button>
+        {subjects.map((subject, index) => (
+          <Grid item xs={12} key={index}>
+            <Button variant="contained" onClick={() => onSubjectSelect(subject)} fullWidth>
+              {subject}
+            </Button>
+          </Grid>
         ))}
       </Grid>
-      <Grid item xs={12}>
-        <Button variant="contained" color="secondary" onClick={handleSubmit} fullWidth>
-          Submit
-        </Button>
-      </Grid>
-      {isAnswered && (
+    );
+  };
+  
+  const ZakovatQuiz = ({ subject }: { subject: string }) => {
+    const [selectedAnswer, setSelectedAnswer] = React.useState<string | null>(null);
+    const [isAnswered, setIsAnswered] = React.useState(false);
+  
+    // 18 ta fan uchun test savollari
+    const quizData: { [key: string]: { question: string; options: string[]; correctAnswer: string } } = {
+      Informatika: {
+        question: "Informatikaning asosiy tushunchasi nima?",
+        options: ["Algoritm", "Matematika", "Fizika", "Kimyo"],
+        correctAnswer: "Algoritm",
+      },
+      Matematika: {
+        question: "Pifagor teoremasi nima?",
+        options: ["A^2 + B^2 = C^2", "A + B = C", "A - B = C", "A * B = C"],
+        correctAnswer: "A^2 + B^2 = C^2",
+      },
+      Tarix: {
+        question: "Qaysi yil mustaqillik e'lon qilindi?",
+        options: ["1991", "2000", "1989", "1995"],
+        correctAnswer: "1991",
+      },
+      Geografiya: {
+        question: "Dunyoning eng katta okeani qaysi?",
+        options: ["Tinch okean", "Atlantika okeani", "Hind okeani", "Shimoliy muz okeani"],
+        correctAnswer: "Tinch okean",
+      },
+      Fizika: {
+        question: "Yorug'lik tezligi qanchaga teng?",
+        options: ["300,000 km/s", "150,000 km/s", "1,000 km/s", "10 km/s"],
+        correctAnswer: "300,000 km/s",
+      },
+      Kimyo: {
+        question: "H2O molekulasining tarkibi nima?",
+        options: ["Vodorod va Kislorod", "Azot va Kislorod", "Uglerod va Kislorod", "Temir va Vodorod"],
+        correctAnswer: "Vodorod va Kislorod",
+      },
+      // Qo'shimcha fanlar uchun savollarni shunday qo'shing:
+      Biologiya: {
+        question: "DNK nimadan iborat?",
+        options: ["Dezoksiribonuklein kislota", "Ribonuklein kislota", "Protein", "Lipidlar"],
+        correctAnswer: "Dezoksiribonuklein kislota",
+      },
+      Adabiyot: {
+        question: "Alisher Navoiyning mashhur asari?",
+        options: ["Xamsa", "Boburnoma", "Shayboniylar tarixi", "Muhokamat ul-lug‘atayn"],
+        correctAnswer: "Xamsa",
+      },
+      // qolgan fanlar...
+      Tarbiya: {
+        question: "Odamni tarbiyalashda asosiy vosita nima?",
+        options: ["Axloq", "Ilm", "Mol-mulk", "San'at"],
+        correctAnswer: "Axloq",
+      },
+    };
+  
+    const { question, options, correctAnswer } = quizData[subject] || {
+      question: "No quiz available",
+      options: [],
+      correctAnswer: "",
+    };
+  
+    const handleAnswerSelection = (answer: string) => {
+      setSelectedAnswer(answer);
+    };
+  
+    const handleSubmit = () => {
+      setIsAnswered(true);
+    };
+  
+    return (
+      <Grid container spacing={2}>
         <Grid item xs={12}>
-          <Typography variant="h6" color={selectedAnswer === correctAnswer ? "green" : "red"}>
-            {selectedAnswer === correctAnswer ? "To'g'ri javob!" : "Noto'g'ri javob. To'g'ri javob - " + correctAnswer}
-          </Typography>
+          <Typography variant="h4">{question}</Typography>
         </Grid>
-      )}
-    </Grid>
-  );
-};
+        <Grid item xs={12}>
+          {options.map((option, index) => (
+            <Button
+              key={index}
+              variant="contained"
+              color={selectedAnswer === option ? "primary" : "default"}
+              onClick={() => handleAnswerSelection(option)}
+              fullWidth
+              style={{ marginBottom: 8 }}
+            >
+              {option}
+            </Button>
+          ))}
+        </Grid>
+        <Grid item xs={12}>
+          <Button variant="contained" color="secondary" onClick={handleSubmit} fullWidth>
+            Submit
+          </Button>
+        </Grid>
+        {isAnswered && (
+          <Grid item xs={12}>
+            <Typography variant="h6" color={selectedAnswer === correctAnswer ? "green" : "red"}>
+              {selectedAnswer === correctAnswer
+                ? "To'g'ri javob!"
+                : "Noto'g'ri javob. To'g'ri javob - " + correctAnswer}
+            </Typography>
+          </Grid>
+        )}
+      </Grid>
+    );
+  };
 
 // Main Dashboard component
 export default function QuizApp(props: any) {

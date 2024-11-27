@@ -9,7 +9,183 @@ import { DashboardLayout } from "@toolpad/core/DashboardLayout";
 import { PageContainer } from "@toolpad/core/PageContainer";
 import Grid from "@mui/material/Grid";
 import { Typography, Card, CardContent, CardMedia } from "@mui/material";
+import MenuBookIcon from '@mui/icons-material/MenuBook';
+import SupportAgentIcon from "@mui/icons-material/SupportAgent";
+import ComputerIcon from "@mui/icons-material/Computer";
+import CampaignIcon from "@mui/icons-material/Campaign";
+import DesignServicesIcon from "@mui/icons-material/DesignServices";
+import HtmlIcon from "@mui/icons-material/Html";
+import CssIcon from "@mui/icons-material/Css";
+import CodeIcon from "@mui/icons-material/Code";
+import LanguageIcon from "@mui/icons-material/Language";
+import BookIcon from "@mui/icons-material/Book";
+// TypeScript interfeysi
 
+
+const NAVIGATION: CustomNavigationItem[] = [
+  {
+    segment: "profil",
+    title: "Profil",
+    icon: <DashboardIcon />,
+    link: "/profil",
+  },
+  {
+    segment: "quiz",
+    title: "Viktorina",
+    icon: <DashboardIcon />,
+    link: "/quiz",
+  },
+  {
+    segment: "communication",
+    title: "Maqolalar",
+    icon: <BookIcon />,
+    link: "/communication",
+  },
+  {
+    segment: "poem",
+    title: "She'rlar",
+    icon: <BookIcon />,
+    link: "/poem",
+  },
+  {
+    segment: "interesting",
+    title: "Bu qizIQ",
+    icon: <CampaignIcon />,
+    link: "/interesting",
+  },
+  {
+    segment: "intelligence",
+    title: "Zakovat savollari",
+    icon: <MenuBookIcon />,
+    link: "/intelligence",
+  },
+  {
+    segment: "support",
+    title: "Qo'llab-quvvatlash xizmati",
+    icon: <SupportAgentIcon />,
+    link: "/support",
+  },
+  {
+    kind: "divider",
+    title: "",
+    segment: "divider",
+    icon: <></>,
+  },
+  {
+    kind: "header",
+    title: "IT va Mediaga aloqador",
+    segment: "analytics",
+    icon: <BarChartIcon />,
+  },
+  {
+    segment: "compute-literacy",
+    title: "Komyuter savodxonligi",
+    icon: <ComputerIcon />,
+    link: "/computer-literacy",
+  },
+  {
+    segment: "marketing",
+    title: "SMM",
+    icon: <CampaignIcon />,
+    link: "/marketing",
+  },
+  {
+    segment: "graphic-design",
+    title: "Grafik dizayn",
+    icon: <DesignServicesIcon />,
+    link: "/graphic-design",
+  },
+  {
+    segment: "html",
+    title: "HTML",
+    icon: <HtmlIcon />,
+    link: "/html",
+  },
+  {
+    segment: "css",
+    title: "CSS",
+    icon: <CssIcon />,
+    link: "/css",
+  },
+  {
+    segment: "sass",
+    title: "SASS",
+    icon: <LayersIcon />,
+    link: "/sass",
+  },
+  {
+    segment: "typescript",
+    title: "TYPESCRIPT",
+    icon: <CodeIcon />,
+    link: "/typescript",
+  },
+  {
+    segment: "javascript",
+    title: "JAVASCRIPT",
+    icon: <CodeIcon />,
+    link: "/javascript",
+  },
+  {
+    segment: "python",
+    title: "PYTHON",
+    icon: <CodeIcon />,
+    link: "/python",
+  },
+  {
+    segment: "java",
+    title: "JAVA",
+    icon: <CodeIcon />,
+    link: "/java",
+  },
+  {
+    segment: "c#",
+    title: "C#",
+    icon: <CodeIcon />,
+    link: "/c#",
+  },
+  {
+    segment: "c++",
+    title: "C++",
+    icon: <CodeIcon />,
+    link: "/c++",
+  },
+  {
+    kind: "divider",
+    title: "",
+    segment: "divider",
+    icon: <></>,
+  },
+  {
+    kind: "header",
+    title: "Xorijiy tillar",
+    segment: "language",
+    icon: <LanguageIcon />,
+  },
+  {
+    segment: "english",
+    title: "Ingliz tili",
+    icon: <LanguageIcon />,
+    link: "/english",
+  },
+  {
+    segment: "russian",
+    title: "Rus tili",
+    icon: <LanguageIcon />,
+    link: "/russian",
+  },
+  {
+    segment: "korean",
+    title: "Koreys tili",
+    icon: <LanguageIcon />,
+    link: "/korean",
+  },
+  {
+    segment: "german",
+    title: "Nemis tili",
+    icon: <LanguageIcon />,
+    link: "/german",
+  },
+];
 // TypeScript interfeysi
 interface CustomNavigationItem {
   kind?: string;
@@ -39,80 +215,7 @@ const interestingFacts = [
   },
 ];
 
-const NAVIGATION: CustomNavigationItem[] = [
-  {
-    kind: "header",
-    title: "Main items",
-    segment: "main-items",
-    icon: <DashboardIcon />,
-  },
-  {
-    segment: "profil",
-    title: "Profil",
-    icon: <DashboardIcon />,
-    link: "/profil",
-  },
-  {
-    segment: "quiz",
-    title: "Viktorina",
-    icon: <DashboardIcon />,
-    link: "/quiz",
-  },
-  {
-    segment: "communication",
-    title: "Maqolalar",
-    icon: <ShoppingCartIcon />,
-    link: "/communication",
-  },
-  {
-    segment: "poem",
-    title: "She'rlar",
-    icon: <ShoppingCartIcon />,
-    link: "/poem",
-  },
-  {
-    segment: "interesting",
-    title: "Bu qizIQ",
-    icon: <ShoppingCartIcon />,
-    link: "/interesting",
-  },
-  {
-    segment: "intelligence",
-    title: "Zakovat savollari",
-    icon: <ShoppingCartIcon />,
-    link: "/intelligence",
-  },
-  {
-    segment: "support",
-    title: "Qo'llab-quvvatlash xizmati",
-    icon: <ShoppingCartIcon />,
-    link: "/support",
-  },
-  {
-    kind: "divider",
-    title: "",
-    segment: "divider",
-    icon: <></>,
-  },
-  {
-    kind: "header",
-    title: "Analytics",
-    segment: "analytics",
-    icon: <BarChartIcon />,
-  },
-  {
-    segment: "reports",
-    title: "Reports",
-    icon: <BarChartIcon />,
-    link: "/reports",
-  },
-  {
-    segment: "integrations",
-    title: "Integrations",
-    icon: <LayersIcon />,
-    link: "/integrations",
-  },
-];
+
 
 const demoTheme = extendTheme({
   colorSchemes: { light: true, dark: true },
